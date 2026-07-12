@@ -10,52 +10,28 @@ public class Aluno {
     int matricula;
     double nota1 =-1;
     double nota2 =-1;
-    double nota3 = 0;
+    double nota3 = -1;
 
     double mediaP;
     double mediaF;
 
-    public void criaAluno (){
-        sc.nextLine();
-        System.out.println("-----Cadastro de Aluno-----");
-
-        System.out.println("Informe o nome do aluno");
-        nome = sc.nextLine();
-
-        System.out.println("Informe o sobrenome");
-        sobrenome = sc.nextLine();
-
-        System.out.println("Informe a idade do aluno");
-        idade = sc.nextInt();
-
-        System.out.println("Informe a nota av1");
-        nota1 = sc.nextDouble();
-
-        System.out.println("Informe a nota av2");
-        nota2 = sc.nextDouble();
-
-        System.out.println("Cadastrado aluno: "+ nome+" "+sobrenome);
-    }
-
-    public void imprimeAluno(){
-        System.out.println("-----Informações de aluno-----");
-        System.out.println("Nome: "+nome+" "+sobrenome+"\nIdade: "+idade+"\nMatricula: "+matricula+"\nNota av1: "+nota1+"\nNota av2: "+nota2+"\nNota av3: "+nota3);
-    }
-
-    public void mediaParc(){
+    public double mediaParc(){
 
         mediaP = (nota1 + nota2)/2;
         System.out.printf("Media parcial do aluno:  %.1f %n",mediaP);
 
+        return mediaP;
     }
 
-    public void mediaFinal(){
+    public double mediaFinal(){
 
         System.out.println("Informe a nota av3");
         nota3 = sc.nextDouble();
 
-        mediaF = (mediaP + mediaF)/2;
+        mediaF = (mediaP + nota3)/2;
         System.out.printf("Media final do aluno:  %.1f %n",mediaF);
+
+        return mediaF;
     }
 
     public void setNome(String nome) {
@@ -116,5 +92,17 @@ public class Aluno {
 
     public String getSobrenome() {
         return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    public void setMediaP(double mediaP) {
+        this.mediaP = mediaP;
+    }
+
+    public void setMediaF(double mediaF) {
+        this.mediaF = mediaF;
     }
 }
