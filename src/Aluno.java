@@ -1,8 +1,4 @@
-import java.util.Scanner;
-
 public class Aluno {
-
-    static Scanner sc = new Scanner(System.in);
 
     String nome;
     String sobrenome;
@@ -24,9 +20,6 @@ public class Aluno {
     }
 
     public double mediaFinal(){
-
-        System.out.println("Informe a nota av3");
-        nota3 = sc.nextDouble();
 
         mediaF = (mediaP + nota3)/2;
         System.out.printf("Media final do aluno:  %.1f %n",mediaF);

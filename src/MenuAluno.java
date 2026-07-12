@@ -39,9 +39,10 @@ public class MenuAluno {
                 case 4:
                     if (aluno.getMediaP() == 0) {
                         System.out.println("Calcule a media parcial para calcular a final.");
-                        aluno.mediaParc();
                         menuAluno();
                     } else {
+                        System.out.println("Informe a nota av3");
+                        aluno.setNota3(sc.nextDouble());
                         aluno.mediaFinal();
                         menuAluno();
                     }
