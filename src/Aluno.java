@@ -6,7 +6,7 @@ public class Aluno {
     int matricula;
     double nota1 =-1;
     double nota2 =-1;
-    double nota3 = -1;
+    double nota3 =-1;
 
     double mediaP;
     double mediaF;
