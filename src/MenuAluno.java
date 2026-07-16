@@ -105,7 +105,7 @@ public class MenuAluno {
                     System.out.println("Nota AV3: " + aluno.getNota3());
                 }
 
-                if (aluno.getMediaP() != -1) {
+                if (aluno.getMediaP() != -1 && aluno.getMediaF() == -1) {
                     System.out.println("Média parcial: " + aluno.getMediaP());
                 } else if (aluno.getMediaF() != -1 && aluno.getMediaP() != -1) {
                     System.out.println("Média parcial: " + aluno.getMediaP());
@@ -187,13 +187,15 @@ public class MenuAluno {
 
                         System.out.println("Informe a nota av3");
                         aluno.setNota3(sc.nextFloat());
-                        aluno.setMediaF((aluno.getMediaP() + aluno.getNota3()) / 3);
+                        aluno.setMediaF((aluno.getMediaP() + aluno.getNota3()) / 2);
 
                         if (aluno.getMediaF() < 7) {
+                            System.out.printf("Media final do aluno:  %.1f %n", aluno.getMediaF());
                             System.out.println("Aluno reprovado.");
-
+                            menuAluno();
                         } else {
                             System.out.printf("Media final do aluno:  %.1f %n", aluno.getMediaF());
+                            System.out.println("Aluno aprovado.");
                             aluno.setAprovado(true);
                             menuAluno();
                         }
@@ -205,10 +207,10 @@ public class MenuAluno {
                 }
             } else {
                 System.out.println("Informe um nome de aluno válido.");
+                sc.nextLine();
                 mediaFinal();
             }
         }
     }
-
 }
 
