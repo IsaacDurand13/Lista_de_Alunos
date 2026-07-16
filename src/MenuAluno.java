@@ -1,4 +1,3 @@
-import java.security.spec.RSAOtherPrimeInfo;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -99,19 +98,30 @@ public class MenuAluno {
                 System.out.println("Nome: " + aluno.getNome() + " " + aluno.getSobrenome());
                 System.out.println("Idade: " + aluno.getIdade());
                 System.out.println("Matricula: " + aluno.getMatricula());
-                System.out.println("Nota av1: " + aluno.getNota1());
-                System.out.println("Nota av2: " + aluno.getNota2());
-                if (aluno.getNota3() == -1) {
-                    System.out.println("O aluno ainda não fez AV3");
-                } else {
-                    System.out.println("Nota av3: " + aluno.nota3);
-                    if (aluno.isAprovado()) {
-                        System.out.println("O aluno esta reprovado!");
-                    }else{
-                        System.out.println("O aluno esta aprovado!");
-                    }
+                System.out.println("Nota AV1: " + aluno.getNota1());
+                System.out.println("Nota AV2: " + aluno.getNota2());
+
+                if (aluno.getNota3() != -1) {
+                    System.out.println("Nota AV3: " + aluno.getNota3());
                 }
+
+                if (aluno.getMediaP() != -1) {
+                    System.out.println("Média parcial: " + aluno.getMediaP());
+                } else if (aluno.getMediaF() != -1 && aluno.getMediaP() != -1) {
+                    System.out.println("Média parcial: " + aluno.getMediaP());
+                    System.out.println("Média final: " + aluno.getMediaF());
+                }
+
+                if (aluno.getNota3() == -1 && !aluno.isAprovado()) {
+                    System.out.println("O aluno ainda não fez AV3");
+                } else if (aluno.isAprovado() && aluno.getMediaP() >= 7) {
+                    System.out.println("O aluno foi aprovado na media parcial!");
+                } else if (aluno.isAprovado() && aluno.getMediaF() >= 7) {
+                    System.out.println("O aluno foi aprovado na media final!");
+                }
+
             }
+
         }
     }
 
@@ -141,17 +151,21 @@ public class MenuAluno {
                     menuAluno();
                 } else {
                     aluno.setMediaP((aluno.getNota1() + aluno.getNota2()) / 2);
-                    if (aluno.getMediaP()<7) {
+                    if (aluno.getMediaP() < 7) {
                         System.out.printf("A média media parcial do aluno foi: %.1f %n", aluno.getMediaP());
                         System.out.println("Aluno convidado a realizar a prova de AV3 para obter média final.");
                         menuAluno();
-                    }else {
+                    } else {
                         System.out.printf("A média media parcial do aluno foi: %.1f %n", aluno.getMediaP());
                         System.out.println("Aluno aprovado em média parcial.");
                         aluno.setMediaF(aluno.getMediaP());
+
                         aluno.setAprovado(true);
                     }
                 }
+            } else {
+                System.out.println("Informe um nome de aluno válido");
+                mediaParc();
             }
         }
 
@@ -169,27 +183,31 @@ public class MenuAluno {
                     System.out.println("Calcule a media parcial para calcular a final.");
                     menuAluno();
                 } else {
-                    if (aluno.getMediaP() >= 7) {
+                    if (aluno.getMediaP() < 7) {
 
                         System.out.println("Informe a nota av3");
                         aluno.setNota3(sc.nextFloat());
-                        aluno.setMediaF(aluno.getMediaP()+(aluno.getNota3())/3);
+                        aluno.setMediaF((aluno.getMediaP() + aluno.getNota3()) / 3);
 
-                        if (aluno.getMediaF()<7) {
+                        if (aluno.getMediaF() < 7) {
                             System.out.println("Aluno reprovado.");
-                        }else {
+                        } else {
                             System.out.printf("Media final do aluno:  %.1f %n", aluno.getMediaF());
                             aluno.setAprovado(true);
                             menuAluno();
                         }
-                    }else {
+                    } else {
                         System.out.println("Aluno já aprovado em media parcial!");
                         menuAluno();
                     }
 
                 }
+            } else {
+                System.out.println("Informe um nome de aluno válido.");
+                mediaFinal();
             }
         }
     }
 
 }
+
