@@ -191,6 +191,7 @@ public class MenuAluno {
 
                         if (aluno.getMediaF() < 7) {
                             System.out.println("Aluno reprovado.");
+
                         } else {
                             System.out.printf("Media final do aluno:  %.1f %n", aluno.getMediaF());
                             aluno.setAprovado(true);
